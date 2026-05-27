@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "TIDAS-Link-LCIA-0.1",
+  "declaredUnitRef": "1 piece battery cell",
+  "calculationBoundary": "cradle-to-gate, production and inbound materials included, use and end-of-life excluded",
+  "impactResults": [
+    {
+      "id": "urn:uuid:61b6131c-97ff-45d8-ae2c-8e0f8c4c5a01",
+      "impactCategory": "climate change",
+      "indicator": "GWP total",
+      "method": "IPCC",
+      "methodVersion": "AR6",
+      "resultType": "midpoint",
+      "value": "74.20",
+      "unit": "kg CO2e",
+      "lifeCycleStage": "MainProduction",
+      "module": "A1-A3",
+      "tidasMethodRef": {
+        "type": "tidas-lcia-method",
+        "id": "urn:tidas:lcia-method:ipcc-ar6-gwp100",
+        "version": "AR6",
+        "description": "GWP 100-year characterization factors."
+      },
+      "tidasProcessRefs": [
+        {
+          "type": "tidas-process",
+          "id": "urn:uuid:aa2aa0a0-2e1a-4ef6-97ec-7d3f77f55101",
+          "version": "0.1",
+          "description": "Illustrative battery cell cradle-to-gate process evidence."
+        }
+      ],
+      "evidenceRefs": [
+        {
+          "type": "study",
+          "id": "urn:nkrd:evidence:battery-cell-study-001",
+          "access": "restricted",
+          "description": "Restricted LCA study supporting the disclosed LCIA result."
+        }
+      ],
+      "dataQuality": {
+        "primaryDataShare": "68.5",
+        "technologicalDQR": "2.0",
+        "geographicalDQR": "2.0",
+        "temporalDQR": "2.0",
+        "dataQualityDescription": "Illustrative data quality values for profile demonstration."
+      },
+      "uncertainty": {
+        "distribution": "qualitative",
+        "description": "No numeric uncertainty disclosed in this example."
+      },
+      "comment": "This result mirrors the PCF total so that the LCIA extension can carry the LCIA method reference and evidence linkage."
+    },
+    {
+      "id": "urn:uuid:81c8ec81-f6b8-4aef-98fc-70f6f2539e2a",
+      "impactCategory": "acidification",
+      "indicator": "AP",
+      "method": "EF",
+      "methodVersion": "3.1",
+      "resultType": "midpoint",
+      "value": "0.31",
+      "unit": "mol H+ eq",
+      "lifeCycleStage": "MainProduction",
+      "module": "A1-A3",
+      "tidasMethodRef": {
+        "type": "tidas-lcia-method",
+        "id": "urn:tidas:lcia-method:ef-3.1-acidification",
+        "version": "3.1"
+      },
+      "evidenceRefs": [
+        {
+          "type": "study",
+          "id": "urn:nkrd:evidence:battery-cell-study-001",
+          "access": "restricted"
+        }
+      ],
+      "dataQuality": {
+        "primaryDataShare": "68.5",
+        "technologicalDQR": "2.0",
+        "geographicalDQR": "2.0",
+        "temporalDQR": "2.0"
+      }
+    }
+  ]
+}

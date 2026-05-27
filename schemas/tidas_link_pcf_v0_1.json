@@ -1,0 +1,695 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tidas.tiangong.earth/schemas/tidas_link_pcf_v0_1.json",
+  "title": "TIDAS Link PCF Profile v0.1",
+  "description": "TIDAS Link v0.1 product carbon footprint profile. The payload keeps PACT-compatible ProductFootprint and CarbonFootprint fields while adding TIDAS evidence, LCIA, traceability, credential, and controlled-transfer references.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "specVersion",
+    "created",
+    "status",
+    "companyName",
+    "companyIds",
+    "productDescription",
+    "productIds",
+    "productNameCompany",
+    "pcf",
+    "tidas",
+    "evidenceRefs"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "TIDAS-Link-PCF-0.1"
+    },
+    "id": {
+      "type": "string",
+      "description": "Stable ProductFootprint identifier. UUIDs are recommended."
+    },
+    "specVersion": {
+      "type": "string",
+      "description": "PACT ProductFootprint specification version used for export compatibility, e.g. 3.0.3 or 3.0.0."
+    },
+    "precedingPfIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Deprecated"
+      ]
+    },
+    "validityPeriodStart": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "validityPeriodEnd": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "companyName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "companyIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^urn:.+"
+      }
+    },
+    "productDescription": {
+      "type": "string",
+      "minLength": 1
+    },
+    "productIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^urn:.+"
+      }
+    },
+    "productClassifications": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "productNameCompany": {
+      "type": "string",
+      "minLength": 1
+    },
+    "comment": {
+      "type": "string"
+    },
+    "pcf": {
+      "$ref": "#/$defs/CarbonFootprint"
+    },
+    "tidas": {
+      "$ref": "#/$defs/TidasLinkMetadata"
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/Reference"
+      }
+    },
+    "traceabilityRefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Reference"
+      }
+    },
+    "credentialRefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Reference"
+      }
+    },
+    "controlledTransfer": {
+      "$ref": "#/$defs/ControlledTransfer"
+    },
+    "extensions": {
+      "type": "array",
+      "description": "PACT DataModelExtension-compatible objects. TIDAS Link LCIA results SHOULD be carried here when strict PACT export is needed.",
+      "items": {
+        "$ref": "#/$defs/DataModelExtension"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "anyOf": [
+        {
+          "required": [
+            "pcf"
+          ],
+          "properties": {
+            "pcf": {
+              "required": [
+                "primaryDataShare"
+              ]
+            }
+          }
+        },
+        {
+          "required": [
+            "pcf"
+          ],
+          "properties": {
+            "pcf": {
+              "required": [
+                "dqi"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "$defs": {
+    "Decimal": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$"
+        }
+      ]
+    },
+    "PositiveDecimal": {
+      "oneOf": [
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "string",
+          "pattern": "^[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$"
+        }
+      ]
+    },
+    "PositiveNonZeroDecimal": {
+      "oneOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        {
+          "type": "string",
+          "pattern": "^(?=.*[1-9])[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$"
+        }
+      ]
+    },
+    "Reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "tidas-process",
+            "tidas-lcia-method",
+            "tidas-source",
+            "ilcd",
+            "openepd",
+            "ecospold2",
+            "epd",
+            "study",
+            "verification-report",
+            "battery-passport",
+            "gba-pge",
+            "untp-dpp",
+            "untp-dte",
+            "untp-dcc",
+            "gs1-digital-link",
+            "epcis-event",
+            "gaia-x-credential",
+            "edc-asset",
+            "dsp-contract",
+            "uri",
+            "other"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string",
+          "format": "uri"
+        },
+        "version": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "hashAlgorithm": {
+          "type": "string"
+        },
+        "access": {
+          "type": "string",
+          "enum": [
+            "public",
+            "restricted",
+            "confidential",
+            "regulator-only",
+            "internal"
+          ]
+        }
+      }
+    },
+    "TidasLinkMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile",
+        "profileVersion",
+        "pactCompatibility",
+        "dataGranularity",
+        "confidentiality",
+        "verificationStatus"
+      ],
+      "properties": {
+        "profile": {
+          "type": "string",
+          "const": "TIDAS Link"
+        },
+        "profileVersion": {
+          "type": "string",
+          "const": "0.1"
+        },
+        "pactCompatibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "version",
+            "mode"
+          ],
+          "properties": {
+            "version": {
+              "type": "string",
+              "description": "PACT technical specification version used as export baseline."
+            },
+            "mode": {
+              "type": "string",
+              "enum": [
+                "strict-exportable",
+                "native-with-extensions"
+              ]
+            },
+            "exportNotes": {
+              "type": "string"
+            }
+          }
+        },
+        "dataGranularity": {
+          "type": "string",
+          "enum": [
+            "product-model",
+            "product-variant",
+            "batch",
+            "serial-item",
+            "facility-period",
+            "shipment",
+            "other"
+          ]
+        },
+        "confidentiality": {
+          "type": "string",
+          "enum": [
+            "public",
+            "restricted",
+            "confidential",
+            "regulator-only"
+          ]
+        },
+        "verificationStatus": {
+          "type": "string",
+          "enum": [
+            "unverified",
+            "first-party",
+            "second-party",
+            "third-party",
+            "credentialed"
+          ]
+        },
+        "batteryContext": {
+          "$ref": "#/$defs/BatteryContext"
+        }
+      }
+    },
+    "BatteryContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "batteryPassportIdentifier": {
+          "type": "string"
+        },
+        "batteryCategory": {
+          "type": "string"
+        },
+        "batteryChemistry": {
+          "type": "string"
+        },
+        "ratedEnergyKWh": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "manufacturingPlace": {
+          "type": "string"
+        },
+        "batteryRegulationCarbonFootprintUnit": {
+          "type": "string",
+          "description": "Use kg CO2e/kWh over expected service life when reporting against Regulation (EU) 2023/1542 Article 7."
+        }
+      }
+    },
+    "CarbonFootprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "declaredUnitOfMeasurement",
+        "declaredUnitAmount",
+        "productMassPerDeclaredUnit",
+        "referencePeriodStart",
+        "referencePeriodEnd",
+        "pcfExcludingBiogenicUptake",
+        "pcfIncludingBiogenicUptake",
+        "fossilGhgEmissions",
+        "fossilCarbonContent",
+        "ipccCharacterizationFactors",
+        "crossSectoralStandards",
+        "exemptedEmissionsPercent"
+      ],
+      "properties": {
+        "declaredUnitOfMeasurement": {
+          "type": "string"
+        },
+        "declaredUnitAmount": {
+          "$ref": "#/$defs/PositiveNonZeroDecimal"
+        },
+        "productMassPerDeclaredUnit": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "referencePeriodStart": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "referencePeriodEnd": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "geographyRegionOrSubregion": {
+          "type": "string"
+        },
+        "geographyCountry": {
+          "type": "string"
+        },
+        "geographyCountrySubdivision": {
+          "type": "string"
+        },
+        "boundaryProcessesDescription": {
+          "type": "string"
+        },
+        "pcfExcludingBiogenicUptake": {
+          "$ref": "#/$defs/Decimal"
+        },
+        "pcfIncludingBiogenicUptake": {
+          "$ref": "#/$defs/Decimal"
+        },
+        "fossilCarbonContent": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "biogenicCarbonContent": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "recycledCarbonContent": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "fossilGhgEmissions": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "landUseChangeGhgEmissions": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "landCarbonLeakage": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "landManagementFossilGhgEmissions": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "landManagementBiogenicCO2Emissions": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "landManagementBiogenicCO2Removals": {
+          "$ref": "#/$defs/Decimal"
+        },
+        "biogenicCO2Uptake": {
+          "$ref": "#/$defs/Decimal"
+        },
+        "biogenicNonCO2Emissions": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "landAreaOccupation": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "aircraftGhgEmissions": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "packagingEmissionsIncluded": {
+          "type": "boolean"
+        },
+        "packagingGhgEmissions": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "outboundLogisticsGhgEmissions": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "ccsTechnologicalCO2CaptureIncluded": {
+          "type": "boolean"
+        },
+        "ccsTechnologicalCO2Capture": {
+          "$ref": "#/$defs/Decimal"
+        },
+        "technologicalCO2CaptureOrigin": {
+          "type": "string"
+        },
+        "technologicalCO2Removals": {
+          "$ref": "#/$defs/Decimal"
+        },
+        "ccuCarbonContent": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "ccuCalculationApproach": {
+          "type": "string"
+        },
+        "ccuCreditCertification": {
+          "type": "string"
+        },
+        "ipccCharacterizationFactors": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "crossSectoralStandards": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "productOrSectorSpecificRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ProductOrSectorSpecificRule"
+          }
+        },
+        "exemptedEmissionsPercent": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "exemptedEmissionsDescription": {
+          "type": "string"
+        },
+        "allocationRulesDescription": {
+          "type": "string"
+        },
+        "secondaryEmissionFactorSources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EmissionFactorSource"
+          }
+        },
+        "primaryDataShare": {
+          "$ref": "#/$defs/PositiveDecimal"
+        },
+        "dqi": {
+          "$ref": "#/$defs/DataQualityIndicators"
+        },
+        "verification": {
+          "$ref": "#/$defs/Verification"
+        }
+      }
+    },
+    "ProductOrSectorSpecificRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operator",
+        "ruleNames"
+      ],
+      "properties": {
+        "operator": {
+          "type": "string"
+        },
+        "ruleNames": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "otherOperatorName": {
+          "type": "string"
+        }
+      }
+    },
+    "EmissionFactorSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "sourceId": {
+          "type": "string"
+        },
+        "sourceRef": {
+          "$ref": "#/$defs/Reference"
+        }
+      }
+    },
+    "DataQualityIndicators": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "technologicalDQR",
+        "geographicalDQR",
+        "temporalDQR"
+      ],
+      "properties": {
+        "technologicalDQR": {
+          "$ref": "#/$defs/Decimal"
+        },
+        "geographicalDQR": {
+          "$ref": "#/$defs/Decimal"
+        },
+        "temporalDQR": {
+          "$ref": "#/$defs/Decimal"
+        },
+        "completenessDQR": {
+          "$ref": "#/$defs/Decimal"
+        },
+        "reliabilityDQR": {
+          "$ref": "#/$defs/Decimal"
+        }
+      }
+    },
+    "Verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "coverage": {
+          "type": "string"
+        },
+        "providerName": {
+          "type": "string"
+        },
+        "completedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "standardName": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "string"
+        }
+      }
+    },
+    "ControlledTransfer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "policyLanguage": {
+          "type": "string",
+          "enum": [
+            "ODRL",
+            "contract",
+            "internal",
+            "other"
+          ]
+        },
+        "catalogRef": {
+          "$ref": "#/$defs/Reference"
+        },
+        "contractRef": {
+          "$ref": "#/$defs/Reference"
+        },
+        "transferProcessRef": {
+          "$ref": "#/$defs/Reference"
+        },
+        "accessScope": {
+          "type": "string"
+        },
+        "auditRequired": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DataModelExtension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "specVersion",
+        "dataSchema",
+        "data"
+      ],
+      "properties": {
+        "specVersion": {
+          "type": "string"
+        },
+        "dataSchema": {
+          "type": "string",
+          "format": "uri"
+        },
+        "documentation": {
+          "type": "string",
+          "format": "uri"
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

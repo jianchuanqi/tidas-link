@@ -1,0 +1,11 @@
+{
+  "name": "tidas-link",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Standalone TIDAS Link profile for supply-chain PCF and selected LCIA data exchange.",
+  "scripts": {
+    "validate:json": "node -e 'for (const f of [\"schemas/tidas_link_pcf_v0_1.json\",\"schemas/tidas_link_lcia_extension_v0_1.json\",\"examples/battery-cell-pcf-v0-1.json\",\"examples/battery-cell-lcia-extension-v0-1.json\"]) { JSON.parse(require(\"fs\").readFileSync(f,\"utf8\")); console.log(f + \" ok\"); }'",
+    "validate:schema": "npx --yes ajv-cli validate --spec=draft7 -s schemas/tidas_link_pcf_v0_1.json -d examples/battery-cell-pcf-v0-1.json --strict=false && npx --yes ajv-cli validate --spec=draft7 -s schemas/tidas_link_lcia_extension_v0_1.json -d examples/battery-cell-lcia-extension-v0-1.json --strict=false",
+    "validate": "npm run validate:json && npm run validate:schema"
+  }
+}

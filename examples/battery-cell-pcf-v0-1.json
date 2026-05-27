@@ -1,0 +1,208 @@
+{
+  "schemaVersion": "TIDAS-Link-PCF-0.1",
+  "id": "urn:uuid:4f6569e0-79b1-4e21-9b60-15d6e6d41101",
+  "specVersion": "3.0.3",
+  "created": "2026-05-27T00:00:00Z",
+  "status": "Active",
+  "validityPeriodStart": "2026-05-27T00:00:00Z",
+  "validityPeriodEnd": "2029-05-27T00:00:00Z",
+  "companyName": "Example Battery Cell Supplier Ltd.",
+  "companyIds": [
+    "urn:lei:529900TIDASLINK001"
+  ],
+  "productDescription": "Illustrative NMC battery cell, cradle-to-gate PCF and selected LCIA disclosure.",
+  "productIds": [
+    "urn:gtin:09506000134352",
+    "urn:manufacturer-part-id:example:battery-cell-nmc-001"
+  ],
+  "productClassifications": [
+    "urn:hs:850760",
+    "urn:cn:85076000"
+  ],
+  "productNameCompany": "Example NMC Battery Cell",
+  "comment": "Illustrative TIDAS Link v0.1 example. Values are not product claims.",
+  "pcf": {
+    "declaredUnitOfMeasurement": "piece",
+    "declaredUnitAmount": "1",
+    "productMassPerDeclaredUnit": "0.82",
+    "referencePeriodStart": "2025-01-01T00:00:00Z",
+    "referencePeriodEnd": "2025-12-31T00:00:00Z",
+    "geographyCountry": "CN",
+    "boundaryProcessesDescription": "Cradle-to-gate battery cell production, including active materials, inbound materials, manufacturing energy, packaging, and outbound logistics to customer gate. Use and end-of-life are excluded.",
+    "pcfExcludingBiogenicUptake": "74.20",
+    "pcfIncludingBiogenicUptake": "74.20",
+    "fossilGhgEmissions": "73.60",
+    "fossilCarbonContent": "0",
+    "biogenicCarbonContent": "0",
+    "recycledCarbonContent": "0.04",
+    "landUseChangeGhgEmissions": "0",
+    "landCarbonLeakage": "0",
+    "landManagementFossilGhgEmissions": "0",
+    "landManagementBiogenicCO2Emissions": "0",
+    "landManagementBiogenicCO2Removals": "0",
+    "biogenicCO2Uptake": "0",
+    "biogenicNonCO2Emissions": "0",
+    "aircraftGhgEmissions": "0",
+    "packagingEmissionsIncluded": true,
+    "packagingGhgEmissions": "0.45",
+    "outboundLogisticsGhgEmissions": "1.80",
+    "ipccCharacterizationFactors": [
+      "AR6"
+    ],
+    "crossSectoralStandards": [
+      "GHGP-Product",
+      "ISO14067",
+      "PACT-3.0"
+    ],
+    "productOrSectorSpecificRules": [
+      {
+        "operator": "Other",
+        "ruleNames": [
+          "TIDAS Link v0.1 PCF profile",
+          "EU Battery Regulation carbon footprint declaration context"
+        ],
+        "otherOperatorName": "TIDAS"
+      }
+    ],
+    "exemptedEmissionsPercent": "0",
+    "allocationRulesDescription": "Mass allocation for co-products where applicable.",
+    "secondaryEmissionFactorSources": [
+      {
+        "name": "TIDAS background dataset",
+        "version": "2026.05",
+        "sourceId": "urn:tidas:source:background-dataset-2026-05"
+      }
+    ],
+    "primaryDataShare": "68.5",
+    "dqi": {
+      "technologicalDQR": "2.0",
+      "geographicalDQR": "2.0",
+      "temporalDQR": "2.0",
+      "completenessDQR": "2.5",
+      "reliabilityDQR": "2.0"
+    },
+    "verification": {
+      "coverage": "product-footprint",
+      "providerName": "Example Assurance Provider",
+      "completedAt": "2026-04-30T00:00:00Z",
+      "standardName": "ISO 14067 / TIDAS Link v0.1",
+      "comments": "Illustrative verification metadata."
+    }
+  },
+  "tidas": {
+    "profile": "TIDAS Link",
+    "profileVersion": "0.1",
+    "pactCompatibility": {
+      "version": "3.0.3",
+      "mode": "native-with-extensions",
+      "exportNotes": "Export to strict PACT removes schemaVersion, tidas, evidenceRefs, traceabilityRefs, credentialRefs, and controlledTransfer while retaining ProductFootprint, CarbonFootprint, and PACT DataModelExtension objects."
+    },
+    "dataGranularity": "product-variant",
+    "confidentiality": "restricted",
+    "verificationStatus": "third-party",
+    "batteryContext": {
+      "batteryPassportIdentifier": "urn:uuid:6b2ad37d-b94d-4f3f-8b31-08681331b401",
+      "batteryCategory": "electric vehicle battery component",
+      "batteryChemistry": "NMC",
+      "ratedEnergyKWh": "0.22",
+      "manufacturingPlace": "CN-JS",
+      "batteryRegulationCarbonFootprintUnit": "kg CO2e/kWh over expected service life"
+    }
+  },
+  "evidenceRefs": [
+    {
+      "type": "tidas-process",
+      "id": "urn:uuid:aa2aa0a0-2e1a-4ef6-97ec-7d3f77f55101",
+      "version": "0.1",
+      "access": "restricted",
+      "description": "TIDAS process dataset supporting the disclosed product footprint."
+    },
+    {
+      "type": "study",
+      "id": "urn:nkrd:evidence:battery-cell-study-001",
+      "access": "restricted",
+      "description": "Restricted LCA study supporting the PCF and LCIA values."
+    }
+  ],
+  "traceabilityRefs": [
+    {
+      "type": "epcis-event",
+      "id": "urn:epc:id:sgtin:0950600.013435.20260527001",
+      "access": "restricted",
+      "description": "Batch traceability event reference."
+    },
+    {
+      "type": "untp-dte",
+      "id": "did:web:example.com:credentials:dte:battery-cell-make-001",
+      "access": "restricted",
+      "description": "UNTP make event credential reference."
+    }
+  ],
+  "credentialRefs": [
+    {
+      "type": "untp-dcc",
+      "id": "did:web:example.com:credentials:dcc:pcf-assurance-001",
+      "access": "restricted",
+      "description": "Digital conformity credential for assurance status."
+    }
+  ],
+  "controlledTransfer": {
+    "policyLanguage": "ODRL",
+    "catalogRef": {
+      "type": "edc-asset",
+      "id": "urn:edc:asset:tidas-link-pcf-battery-cell-001",
+      "access": "restricted"
+    },
+    "contractRef": {
+      "type": "dsp-contract",
+      "id": "urn:dsp:contract:tidas-link-pcf-battery-cell-001",
+      "access": "restricted"
+    },
+    "accessScope": "PCF summary and LCIA summary; no raw LCI exchanges disclosed.",
+    "auditRequired": true
+  },
+  "extensions": [
+    {
+      "specVersion": "TIDAS-Link-LCIA-0.1",
+      "dataSchema": "https://tidas.tiangong.earth/schemas/tidas_link_lcia_extension_v0_1.json",
+      "documentation": "https://tidas.tiangong.earth/docs/integration/tidas-link/profile-v0-1",
+      "data": {
+        "schemaVersion": "TIDAS-Link-LCIA-0.1",
+        "declaredUnitRef": "1 piece battery cell",
+        "calculationBoundary": "cradle-to-gate, production and inbound materials included, use and end-of-life excluded",
+        "impactResults": [
+          {
+            "id": "urn:uuid:61b6131c-97ff-45d8-ae2c-8e0f8c4c5a01",
+            "impactCategory": "climate change",
+            "indicator": "GWP total",
+            "method": "IPCC",
+            "methodVersion": "AR6",
+            "resultType": "midpoint",
+            "value": "74.20",
+            "unit": "kg CO2e",
+            "lifeCycleStage": "MainProduction",
+            "module": "A1-A3",
+            "tidasMethodRef": {
+              "type": "tidas-lcia-method",
+              "id": "urn:tidas:lcia-method:ipcc-ar6-gwp100",
+              "version": "AR6"
+            },
+            "evidenceRefs": [
+              {
+                "type": "study",
+                "id": "urn:nkrd:evidence:battery-cell-study-001",
+                "access": "restricted"
+              }
+            ],
+            "dataQuality": {
+              "primaryDataShare": "68.5",
+              "technologicalDQR": "2.0",
+              "geographicalDQR": "2.0",
+              "temporalDQR": "2.0"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
