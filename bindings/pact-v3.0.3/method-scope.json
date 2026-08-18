@@ -1,0 +1,87 @@
+{
+  "binding": "PACT",
+  "version": "3.0.3",
+  "openApiOperations": [
+    {
+      "method": "GET",
+      "path": "/3/footprints",
+      "pactAction": "ListFootprints",
+      "bindingResponsibility": "Apply PACT filters, limits, pagination links, authorization outcomes, and response codes.",
+      "tidasLinkEffect": "Return zero or more LCA results; query and pagination fields do not enter the results."
+    },
+    {
+      "method": "GET",
+      "path": "/3/footprints/{id}",
+      "pactAction": "GetFootprint",
+      "bindingResponsibility": "Resolve the PACT footprint identifier and produce the PACT response or error.",
+      "tidasLinkEffect": "Return one LCA result identified by resultId."
+    },
+    {
+      "method": "POST",
+      "path": "/3/events",
+      "pactAction": "Events",
+      "bindingResponsibility": "Validate and convert PACT CloudEvents for requests, responses, updates, and errors.",
+      "tidasLinkEffect": "Map ProductFootprints carried or referenced by events to LCA Results; keep requests, event metadata, delivery outcomes, and errors in the Binding or host system."
+    }
+  ],
+  "eventMappings": [
+    {
+      "pactEvent": "RequestCreatedEvent",
+      "bindingResponsibility": "Process PACT request filters and retain CloudEvent identity, source, time, and correlation in the Binding.",
+      "tidasLinkRecords": [],
+      "reasonNoLinkRecord": "A request is workflow and does not prove that an LCA result was actually used."
+    },
+    {
+      "pactEvent": "RequestFulfilledEvent",
+      "bindingResponsibility": "Map each returned ProductFootprint into an LCA Result while retaining event delivery and correlation in the Binding.",
+      "tidasLinkRecords": [
+        "pcf-profile"
+      ]
+    },
+    {
+      "pactEvent": "RequestRejectedEvent",
+      "bindingResponsibility": "Preserve and return the PACT rejection and error context.",
+      "tidasLinkRecords": [],
+      "reasonNoLinkRecord": "A request rejection is a protocol or request-processing outcome, not an LCA result or calculation input."
+    },
+    {
+      "pactEvent": "PublishedEvent",
+      "bindingResponsibility": "Resolve the referenced ProductFootprints and map their LCA content and result history.",
+      "tidasLinkRecords": [
+        "pcf-profile"
+      ]
+    }
+  ],
+  "restSpecificationRequirements": [
+    {
+      "requirement": "Authenticate",
+      "location": "/auth/token and discovered OAuth2 token endpoint",
+      "owner": "PACT Binding and host system"
+    },
+    {
+      "requirement": "Filtering",
+      "location": "ListFootprints and ProductFootprint request event",
+      "owner": "PACT Binding"
+    },
+    {
+      "requirement": "Pagination",
+      "location": "ListFootprints Link header and limit handling",
+      "owner": "PACT Binding and host system"
+    },
+    {
+      "requirement": "ProductFootprint update notification",
+      "location": "PACT CloudEvents",
+      "owner": "PACT Binding"
+    },
+    {
+      "requirement": "Asynchronous request, response, and response error",
+      "location": "PACT CloudEvents",
+      "owner": "PACT Binding and host system"
+    },
+    {
+      "requirement": "Error response and retry behavior",
+      "location": "PACT REST and CloudEvents rules",
+      "owner": "PACT Binding and host system"
+    }
+  ]
+}

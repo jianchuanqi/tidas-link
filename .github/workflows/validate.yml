@@ -1,0 +1,49 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out TIDAS Link
+        uses: actions/checkout@v4
+        with:
+          path: tidas-link
+
+      - name: Check out pinned TIDAS
+        uses: actions/checkout@v4
+        with:
+          repository: jianchuanqi/tidas
+          ref: e26953df2549a5eba4c823295d5631867427a465
+          path: tidas
+
+      - name: Check out pinned PACT
+        uses: actions/checkout@v4
+        with:
+          repository: wbcsd/data-exchange-protocol
+          ref: v3.0.3
+          path: data-exchange-protocol
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: tidas-link/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: tidas-link
+
+      - name: Validate schemas, adapters, and upstream baselines
+        run: npm run validate
+        working-directory: tidas-link
+        env:
+          TIDAS_ROOT: ${{ github.workspace }}/tidas
+          PACT_ROOT: ${{ github.workspace }}/data-exchange-protocol

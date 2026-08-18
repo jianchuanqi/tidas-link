@@ -1,0 +1,327 @@
+{
+  "binding": "PACT",
+  "version": "3.0.3",
+  "definitions": {
+    "lca-result": "The field has LCA-result meaning and is mapped to TIDAS Link.",
+    "pact-binding": "The field is required to preserve or reproduce the PACT representation but is not part of the TIDAS Link LCA result.",
+    "system-transfer": "The field belongs to transport execution or an ordinary host information system."
+  },
+  "systemTransferFields": [
+    "OAuth2 client credentials and access tokens",
+    "HTTP method, path, headers, and response status",
+    "filter expressions, result limit, and pagination links",
+    "CloudEvent id, source, type, time, and correlation",
+    "request delivery status, retry state, and error response",
+    "sender and recipient endpoints",
+    "authorization, encryption, storage, and audit fields"
+  ],
+  "productFootprintFields": [
+    {
+      "field": "id",
+      "scope": "lca-result",
+      "linkTarget": "resultId"
+    },
+    {
+      "field": "specVersion",
+      "scope": "pact-binding",
+      "linkTarget": null
+    },
+    {
+      "field": "precedingPfIds",
+      "scope": "lca-result",
+      "linkTarget": "precedingResultIds"
+    },
+    {
+      "field": "created",
+      "scope": "pact-binding",
+      "linkTarget": null
+    },
+    {
+      "field": "status",
+      "scope": "lca-result",
+      "linkTarget": "resultStatus"
+    },
+    {
+      "field": "validityPeriodStart",
+      "scope": "lca-result",
+      "linkTarget": "validityPeriod.start"
+    },
+    {
+      "field": "validityPeriodEnd",
+      "scope": "lca-result",
+      "linkTarget": "validityPeriod.end"
+    },
+    {
+      "field": "companyName",
+      "scope": "lca-result",
+      "linkTarget": "dataOwner.name"
+    },
+    {
+      "field": "companyIds",
+      "scope": "lca-result",
+      "linkTarget": "dataOwner.ids"
+    },
+    {
+      "field": "productDescription",
+      "scope": "lca-result",
+      "linkTarget": "subject.description"
+    },
+    {
+      "field": "productIds",
+      "scope": "lca-result",
+      "linkTarget": "subject.ids"
+    },
+    {
+      "field": "productClassifications",
+      "scope": "lca-result",
+      "linkTarget": "subject.classifications"
+    },
+    {
+      "field": "productNameCompany",
+      "scope": "lca-result",
+      "linkTarget": "subject.name"
+    },
+    {
+      "field": "comment",
+      "scope": "lca-result",
+      "linkTarget": "limitations"
+    },
+    {
+      "field": "pcf",
+      "scope": "lca-result",
+      "linkTarget": "referenceQuantity, systemBoundary, referencePeriod, geography, modeling, impactResults, reportedParameters, dataQuality, verification"
+    },
+    {
+      "field": "extensions",
+      "scope": "pact-binding",
+      "linkTarget": "lcaExtensions only when the extension has LCA meaning"
+    }
+  ],
+  "carbonFootprintFields": [
+    {
+      "field": "declaredUnitOfMeasurement",
+      "scope": "lca-result",
+      "linkTarget": "referenceQuantity.unit"
+    },
+    {
+      "field": "declaredUnitAmount",
+      "scope": "lca-result",
+      "linkTarget": "referenceQuantity.amount"
+    },
+    {
+      "field": "productMassPerDeclaredUnit",
+      "scope": "lca-result",
+      "linkTarget": "referenceQuantity.massKg"
+    },
+    {
+      "field": "referencePeriodStart",
+      "scope": "lca-result",
+      "linkTarget": "referencePeriod.start"
+    },
+    {
+      "field": "referencePeriodEnd",
+      "scope": "lca-result",
+      "linkTarget": "referencePeriod.end"
+    },
+    {
+      "field": "geographyRegionOrSubregion",
+      "scope": "lca-result",
+      "linkTarget": "geography.regionOrSubregion"
+    },
+    {
+      "field": "geographyCountry",
+      "scope": "lca-result",
+      "linkTarget": "geography.country"
+    },
+    {
+      "field": "geographyCountrySubdivision",
+      "scope": "lca-result",
+      "linkTarget": "geography.countrySubdivision"
+    },
+    {
+      "field": "boundaryProcessesDescription",
+      "scope": "lca-result",
+      "linkTarget": "systemBoundary.description"
+    },
+    {
+      "field": "pcfExcludingBiogenicUptake",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "pcfIncludingBiogenicUptake",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "fossilCarbonContent",
+      "scope": "lca-result",
+      "linkTarget": "reportedParameters"
+    },
+    {
+      "field": "biogenicCarbonContent",
+      "scope": "lca-result",
+      "linkTarget": "reportedParameters"
+    },
+    {
+      "field": "recycledCarbonContent",
+      "scope": "lca-result",
+      "linkTarget": "reportedParameters"
+    },
+    {
+      "field": "fossilGhgEmissions",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "landUseChangeGhgEmissions",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "landCarbonLeakage",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "landManagementFossilGhgEmissions",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "landManagementBiogenicCO2Emissions",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "landManagementBiogenicCO2Removals",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "biogenicCO2Uptake",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "biogenicNonCO2Emissions",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "landAreaOccupation",
+      "scope": "lca-result",
+      "linkTarget": "reportedParameters"
+    },
+    {
+      "field": "aircraftGhgEmissions",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "packagingEmissionsIncluded",
+      "scope": "lca-result",
+      "linkTarget": "lcaExtensions"
+    },
+    {
+      "field": "packagingGhgEmissions",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "packagingBiogenicCarbonContent",
+      "scope": "lca-result",
+      "linkTarget": "reportedParameters"
+    },
+    {
+      "field": "outboundLogisticsGhgEmissions",
+      "scope": "lca-result",
+      "linkTarget": "impactResults"
+    },
+    {
+      "field": "ccsTechnologicalCO2CaptureIncluded",
+      "scope": "lca-result",
+      "linkTarget": "lcaExtensions"
+    },
+    {
+      "field": "ccsTechnologicalCO2Capture",
+      "scope": "lca-result",
+      "linkTarget": "reportedParameters"
+    },
+    {
+      "field": "technologicalCO2CaptureOrigin",
+      "scope": "lca-result",
+      "linkTarget": "lcaExtensions"
+    },
+    {
+      "field": "technologicalCO2Removals",
+      "scope": "lca-result",
+      "linkTarget": "reportedParameters"
+    },
+    {
+      "field": "ccuCarbonContent",
+      "scope": "lca-result",
+      "linkTarget": "reportedParameters"
+    },
+    {
+      "field": "ccuCalculationApproach",
+      "scope": "lca-result",
+      "linkTarget": "modeling or lcaExtensions"
+    },
+    {
+      "field": "ccuCreditCertification",
+      "scope": "lca-result",
+      "linkTarget": "verification or lcaExtensions"
+    },
+    {
+      "field": "ipccCharacterizationFactors",
+      "scope": "lca-result",
+      "linkTarget": "impactResults.method"
+    },
+    {
+      "field": "crossSectoralStandards",
+      "scope": "lca-result",
+      "linkTarget": "modeling.standards"
+    },
+    {
+      "field": "productOrSectorSpecificRules",
+      "scope": "lca-result",
+      "linkTarget": "modeling.productOrSectorRules"
+    },
+    {
+      "field": "exemptedEmissionsPercent",
+      "scope": "lca-result",
+      "linkTarget": "modeling.excludedSharePercent"
+    },
+    {
+      "field": "exemptedEmissionsDescription",
+      "scope": "lca-result",
+      "linkTarget": "modeling.cutOffRulesDescription"
+    },
+    {
+      "field": "allocationRulesDescription",
+      "scope": "lca-result",
+      "linkTarget": "modeling.allocationRulesDescription"
+    },
+    {
+      "field": "secondaryEmissionFactorSources",
+      "scope": "lca-result",
+      "linkTarget": "modeling.secondaryDataSources or lcaExtensions"
+    },
+    {
+      "field": "primaryDataShare",
+      "scope": "lca-result",
+      "linkTarget": "dataQuality.primaryDataShare"
+    },
+    {
+      "field": "dqi",
+      "scope": "lca-result",
+      "linkTarget": "dataQuality"
+    },
+    {
+      "field": "verification",
+      "scope": "lca-result",
+      "linkTarget": "verification"
+    }
+  ]
+}

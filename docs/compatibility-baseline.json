@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-07-30",
+  "tidasLink": {
+    "repository": "git@github.com:jianchuanqi/tidas-link.git",
+    "repositoryBaselineCommit": "1e4b80f6b03a884322ccb000d1bebd39c0082130",
+    "schemas": [
+      "schemas/common.json",
+      "schemas/calculation-input.json",
+      "schemas/lca-result.json",
+      "schemas/lci-result.json",
+      "schemas/lcia-result.json",
+      "schemas/pcf-profile.json"
+    ],
+    "status": "lca-result-hierarchy-with-pcf-profile-and-calculation-inputs"
+  },
+  "tidas": {
+    "repository": "git@github.com:jianchuanqi/tidas.git",
+    "role": "read-only-upstream",
+    "commit": "e26953df2549a5eba4c823295d5631867427a465",
+    "commitDate": "2026-07-27T18:47:33+08:00",
+    "integrationStatus": "read-only-schema-baseline-reviewed",
+    "schemaSnapshotRoot": "static/schemas",
+    "schemaFileCount": 19,
+    "schemaManifestSha256": "2b80cbdde064e45fb35149d66b65c0822ccf0b6c5bcd38e17b11ae58aae6626f",
+    "validationTool": {
+      "project": "tidas-tools",
+      "release": "v0.1.1",
+      "localExecutionStatus": "not-run"
+    },
+    "schemaSnapshots": [
+      {
+        "path": "static/schemas/tidas_processes.json",
+        "sha256": "8476530740d2af11fe3c607afbeab68a318c6b08d7558417ebcad8ac33f0efdd"
+      },
+      {
+        "path": "static/schemas/tidas_lciamethods.json",
+        "sha256": "6a96fa34bda4d848eeaa1edb124a544f4511c824436514e62b58626919e57836"
+      },
+      {
+        "path": "static/schemas/tidas_flows.json",
+        "sha256": "7833d7f1e66a475531fecfd64bdc80db57ddaae0f4717c11615353bb4552c22b"
+      },
+      {
+        "path": "static/schemas/tidas_sources.json",
+        "sha256": "97b5eb51165640d85eb1cb5a499823754eabbd9facddba93de59543ea8dcf307"
+      },
+      {
+        "path": "static/schemas/tidas_unitgroups.json",
+        "sha256": "d83ada361908ffc047d38ded3aa15be748c7d3421dc294f34c5afbcc6a58f127"
+      }
+    ]
+  },
+  "pact": {
+    "repository": "git@github.com:wbcsd/data-exchange-protocol.git",
+    "role": "external-pcf-binding",
+    "technicalSpecification": "3.0.3",
+    "tag": "v3.0.3",
+    "commit": "25d27d7227d7fe23ba6a481abc780a74afeb6858",
+    "commitDate": "2025-11-18T18:32:17+01:00",
+    "scope": "product-carbon-footprint",
+    "currentStatus": "payload-adapter-and-transfer-method-scope",
+    "bindingStatus": "product-footprint-import-export-tested",
+    "methodologyConformanceStatus": "not-assessed"
+  }
+}

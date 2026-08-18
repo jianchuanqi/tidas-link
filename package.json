@@ -1,11 +1,19 @@
 {
   "name": "tidas-link",
-  "version": "0.1.0",
   "private": true,
-  "description": "Standalone TIDAS Link profile for supply-chain PCF and selected LCIA data exchange.",
+  "description": "Schema set for LCI and LCIA results, the PCF profile, and their calculation inputs, with protocol bindings.",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "validate:json": "node -e 'for (const f of [\"schemas/tidas_link_pcf_v0_1.json\",\"schemas/tidas_link_lcia_extension_v0_1.json\",\"examples/battery-cell-pcf-v0-1.json\",\"examples/battery-cell-lcia-extension-v0-1.json\"]) { JSON.parse(require(\"fs\").readFileSync(f,\"utf8\")); console.log(f + \" ok\"); }'",
-    "validate:schema": "npx --yes ajv-cli validate --spec=draft7 -s schemas/tidas_link_pcf_v0_1.json -d examples/battery-cell-pcf-v0-1.json --strict=false && npx --yes ajv-cli validate --spec=draft7 -s schemas/tidas_link_lcia_extension_v0_1.json -d examples/battery-cell-lcia-extension-v0-1.json --strict=false",
-    "validate": "npm run validate:json && npm run validate:schema"
+    "validate:examples": "node scripts/validate-examples.js",
+    "validate:compatibility": "node scripts/check-compatibility-baseline.js",
+    "validate": "npm run validate:examples && npm test && npm run validate:compatibility",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "yaml": "2.9.0"
   }
 }

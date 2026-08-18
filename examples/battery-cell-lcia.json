@@ -1,0 +1,115 @@
+{
+  "resultType": "lcia",
+  "resultId": "urn:uuid:9e3042cb-6a91-47c4-bb52-e5fc9480c210",
+  "resultVersion": "1.0.0",
+  "resultStatus": "active",
+  "dataOwner": {
+    "ids": [
+      "urn:lei:529900TIDASLINK001"
+    ],
+    "name": "Example Battery Cell Supplier Ltd."
+  },
+  "subject": {
+    "type": "product",
+    "ids": [
+      "urn:gtin:09506000134352"
+    ],
+    "name": "Example NMC Battery Cell",
+    "description": "Illustrative multi-indicator cradle-to-gate LCIA result set.",
+    "classifications": [
+      "urn:hs:850760"
+    ],
+    "granularity": "product-variant"
+  },
+  "referenceQuantity": {
+    "basis": "declared-unit",
+    "amount": "1",
+    "unit": "piece",
+    "massKg": "0.82"
+  },
+  "systemBoundary": {
+    "type": "cradle-to-gate",
+    "description": "Raw-material supply, inbound transport, battery-cell production, packaging, and outbound logistics to the customer gate.",
+    "includedStages": [
+      "raw-material supply",
+      "inbound transport",
+      "cell production",
+      "packaging",
+      "outbound logistics"
+    ],
+    "excludedStages": [
+      "use",
+      "end-of-life"
+    ]
+  },
+  "referencePeriod": {
+    "start": "2025-01-01T00:00:00Z",
+    "end": "2025-12-31T00:00:00Z"
+  },
+  "geography": {
+    "country": "CN"
+  },
+  "modeling": {
+    "standards": [
+      "ISO 14040",
+      "ISO 14044"
+    ],
+    "allocationRulesDescription": "Mass allocation for co-products where applicable.",
+    "excludedSharePercent": "0"
+  },
+  "impactResults": [
+    {
+      "resultItemId": "climate-change-gwp-total",
+      "impactCategory": "climate change",
+      "indicator": "GWP total",
+      "value": "74.20",
+      "unit": "kg CO2e",
+      "method": {
+        "name": "IPCC",
+        "version": "AR6"
+      },
+      "lifeCycleStage": "production",
+      "module": "A1-A3"
+    },
+    {
+      "resultItemId": "acidification-potential",
+      "impactCategory": "acidification",
+      "indicator": "acidification potential",
+      "value": "0.41",
+      "unit": "mol H+ eq",
+      "method": {
+        "name": "Environmental Footprint",
+        "version": "3.1"
+      },
+      "lifeCycleStage": "production",
+      "module": "A1-A3"
+    },
+    {
+      "resultItemId": "water-use-deprivation-potential",
+      "impactCategory": "water use",
+      "indicator": "water use deprivation potential",
+      "value": "12.8",
+      "unit": "m3 world eq",
+      "method": {
+        "name": "Environmental Footprint",
+        "version": "3.1"
+      },
+      "lifeCycleStage": "production",
+      "module": "A1-A3"
+    }
+  ],
+  "dataQuality": {
+    "primaryDataShare": "68.5",
+    "technologicalDQR": "2.0",
+    "geographicalDQR": "2.0",
+    "temporalDQR": "2.0",
+    "completenessDQR": "2.5",
+    "reliabilityDQR": "2.0",
+    "description": "Illustrative data-quality values."
+  },
+  "verification": {
+    "status": "not-verified",
+    "comments": "No assurance claim is made for this illustrative example."
+  },
+  "limitations": "Illustrative result set for schema validation only."
+}

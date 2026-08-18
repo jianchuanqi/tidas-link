@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tidas.tiangong.earth/schemas/lci-result.json",
+  "title": "TIDAS Link LCI Result",
+  "description": "Inventory-flow result exchanged through TIDAS Link.",
+  "allOf": [
+    {
+      "$ref": "https://tidas.tiangong.earth/schemas/lca-result.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "resultType": {
+          "const": "lci"
+        },
+        "inventoryResults": {},
+        "profile": false,
+        "impactResults": false,
+        "reportedParameters": false
+      },
+      "required": [
+        "resultType",
+        "inventoryResults"
+      ]
+    }
+  ]
+}

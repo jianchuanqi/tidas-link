@@ -1,0 +1,67 @@
+{
+  "resultType": "lci",
+  "resultId": "urn:uuid:159ef4a6-39eb-4f52-9c02-eefc0af2e101",
+  "resultVersion": "1.0.0",
+  "resultStatus": "active",
+  "dataOwner": {
+    "ids": [
+      "urn:lei:529900TIDASLINK001"
+    ],
+    "name": "Example Battery Cell Supplier Ltd."
+  },
+  "subject": {
+    "type": "facility-output",
+    "ids": [
+      "urn:manufacturer-output:example:battery-cell-line-1"
+    ],
+    "name": "Example NMC battery-cell production",
+    "description": "Illustrative gate-to-gate inventory for one battery cell.",
+    "granularity": "facility-period"
+  },
+  "referenceQuantity": {
+    "basis": "reference-flow",
+    "amount": "1",
+    "unit": "piece",
+    "massKg": "0.82"
+  },
+  "systemBoundary": {
+    "type": "gate-to-gate",
+    "description": "Battery-cell manufacturing from received materials to finished cell at the factory gate."
+  },
+  "referencePeriod": {
+    "start": "2025-01-01T00:00:00Z",
+    "end": "2025-12-31T00:00:00Z"
+  },
+  "geography": {
+    "country": "CN"
+  },
+  "inventoryResults": [
+    {
+      "resultItemId": "electricity-input",
+      "value": "12.4",
+      "unit": "kWh",
+      "inventoryFlow": {
+        "direction": "input",
+        "flow": {
+          "objectType": "flow",
+          "id": "urn:uuid:8a0e79ce-31b7-4b5b-a1f8-a6ee7992d001",
+          "version": "01.00.000"
+        }
+      }
+    },
+    {
+      "resultItemId": "battery-cell-output",
+      "value": "1",
+      "unit": "piece",
+      "inventoryFlow": {
+        "direction": "output",
+        "flow": {
+          "objectType": "flow",
+          "id": "urn:uuid:9f632102-e6c2-4a06-b777-f8510791e201",
+          "version": "01.00.000"
+        }
+      }
+    }
+  ],
+  "limitations": "Illustrative inventory for schema validation only."
+}

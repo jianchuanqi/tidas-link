@@ -1,0 +1,127 @@
+{
+  "resultType": "lcia",
+  "profile": "pcf",
+  "resultId": "urn:uuid:4f6569e0-79b1-4e21-9b60-15d6e6d41101",
+  "resultVersion": "1.0.0",
+  "resultStatus": "active",
+  "dataOwner": {
+    "ids": [
+      "urn:lei:529900TIDASLINK001"
+    ],
+    "name": "Example Battery Cell Supplier Ltd."
+  },
+  "subject": {
+    "type": "product",
+    "ids": [
+      "urn:gtin:09506000134352",
+      "urn:manufacturer-part-id:example:battery-cell-nmc-001"
+    ],
+    "name": "Example NMC Battery Cell",
+    "description": "Illustrative NMC battery cell. Values are not product claims.",
+    "classifications": [
+      "urn:hs:850760"
+    ],
+    "granularity": "product-variant"
+  },
+  "referenceQuantity": {
+    "basis": "declared-unit",
+    "amount": "1",
+    "unit": "piece",
+    "massKg": "0.82"
+  },
+  "systemBoundary": {
+    "type": "cradle-to-gate",
+    "description": "Raw-material supply, inbound transport, cell production, packaging, and outbound logistics to the customer gate are included. Use and end-of-life are excluded.",
+    "includedStages": [
+      "raw-material supply",
+      "inbound transport",
+      "cell production",
+      "packaging",
+      "outbound logistics"
+    ],
+    "excludedStages": [
+      "use",
+      "end-of-life"
+    ]
+  },
+  "referencePeriod": {
+    "start": "2025-01-01T00:00:00Z",
+    "end": "2025-12-31T00:00:00Z"
+  },
+  "validityPeriod": {
+    "start": "2026-05-27T00:00:00Z",
+    "end": "2029-05-27T00:00:00Z"
+  },
+  "geography": {
+    "country": "CN"
+  },
+  "modeling": {
+    "standards": [
+      "GHGP-Product",
+      "ISO 14067"
+    ],
+    "allocationRulesDescription": "Mass allocation for co-products where applicable.",
+    "cutOffRulesDescription": "The reported excluded share is zero.",
+    "excludedSharePercent": "0"
+  },
+  "impactResults": [
+    {
+      "resultItemId": "gwp-excluding-biogenic-uptake",
+      "impactCategory": "climate change",
+      "indicator": "GWP excluding biogenic uptake",
+      "value": "74.20",
+      "unit": "kg CO2e",
+      "method": {
+        "name": "IPCC",
+        "version": "AR6"
+      }
+    },
+    {
+      "resultItemId": "gwp-including-biogenic-uptake",
+      "impactCategory": "climate change",
+      "indicator": "GWP including biogenic uptake",
+      "value": "74.20",
+      "unit": "kg CO2e",
+      "method": {
+        "name": "IPCC",
+        "version": "AR6"
+      }
+    },
+    {
+      "resultItemId": "pact-fossil-ghg-emissions",
+      "impactCategory": "climate change",
+      "indicator": "fossil GHG emissions",
+      "value": "74.20",
+      "unit": "kg CO2e",
+      "method": {
+        "name": "IPCC",
+        "version": "AR6"
+      }
+    }
+  ],
+  "reportedParameters": [
+    {
+      "resultItemId": "pact-fossil-carbon-content",
+      "indicator": "fossil carbon content",
+      "value": "0",
+      "unit": "kg C"
+    }
+  ],
+  "dataQuality": {
+    "primaryDataShare": "68.5",
+    "technologicalDQR": "2.0",
+    "geographicalDQR": "2.0",
+    "temporalDQR": "2.0",
+    "completenessDQR": "2.5",
+    "reliabilityDQR": "2.0"
+  },
+  "verification": {
+    "status": "third-party",
+    "coverage": "product footprint",
+    "providerName": "Example Assurance Provider",
+    "completedAt": "2026-04-30T00:00:00Z",
+    "standardName": "ISO 14067",
+    "comments": "Illustrative verification metadata."
+  },
+  "limitations": "Illustrative result for field-boundary and schema validation only."
+}

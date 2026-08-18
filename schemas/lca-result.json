@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tidas.tiangong.earth/schemas/lca-result.json",
+  "title": "TIDAS Link LCA Result",
+  "description": "Common result structure for LCI and LCIA data exchanged through TIDAS Link.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "resultType",
+    "resultId",
+    "resultVersion",
+    "resultStatus",
+    "dataOwner",
+    "subject",
+    "referenceQuantity",
+    "systemBoundary",
+    "referencePeriod"
+  ],
+  "properties": {
+    "resultType": {
+      "type": "string",
+      "enum": [
+        "lci",
+        "lcia"
+      ]
+    },
+    "profile": {
+      "type": "string",
+      "enum": [
+        "pcf"
+      ],
+      "description": "A more specific result profile. PCF is an LCIA result profile."
+    },
+    "resultId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable identity of the LCA result, not the identity of a transfer message."
+    },
+    "resultVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "precedingResultIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "resultStatus": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "active",
+        "superseded",
+        "withdrawn"
+      ],
+      "description": "Lifecycle status of the LCA result, not a delivery or workflow status."
+    },
+    "dataOwner": {
+      "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/DataOwner"
+    },
+    "subject": {
+      "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/Subject"
+    },
+    "referenceQuantity": {
+      "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/ReferenceQuantity"
+    },
+    "systemBoundary": {
+      "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/SystemBoundary"
+    },
+    "referencePeriod": {
+      "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/Period"
+    },
+    "validityPeriod": {
+      "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/Period"
+    },
+    "geography": {
+      "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/Geography"
+    },
+    "modeling": {
+      "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/Modeling"
+    },
+    "inventoryResults": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/InventoryResult"
+      }
+    },
+    "impactResults": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/ImpactResult"
+      }
+    },
+    "reportedParameters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/ReportedParameter"
+      }
+    },
+    "dataQuality": {
+      "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/DataQuality"
+    },
+    "verification": {
+      "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/Verification"
+    },
+    "limitations": {
+      "type": "string"
+    },
+    "lcaExtensions": {
+      "type": "array",
+      "items": {
+        "$ref": "https://tidas.tiangong.earth/schemas/common.json#/$defs/LcaExtension"
+      }
+    },
+    "calculationInputs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "https://tidas.tiangong.earth/schemas/calculation-input.json"
+      }
+    }
+  },
+  "anyOf": [
+    {
+      "properties": {
+        "inventoryResults": {}
+      },
+      "required": [
+        "inventoryResults"
+      ]
+    },
+    {
+      "properties": {
+        "impactResults": {}
+      },
+      "required": [
+        "impactResults"
+      ]
+    }
+  ]
+}

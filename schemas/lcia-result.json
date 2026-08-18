@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tidas.tiangong.earth/schemas/lcia-result.json",
+  "title": "TIDAS Link LCIA Result",
+  "description": "Life-cycle impact-assessment result exchanged through TIDAS Link.",
+  "allOf": [
+    {
+      "$ref": "https://tidas.tiangong.earth/schemas/lca-result.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "resultType": {
+          "const": "lcia"
+        },
+        "impactResults": {},
+        "inventoryResults": false
+      },
+      "required": [
+        "resultType",
+        "impactResults"
+      ]
+    }
+  ]
+}

@@ -1,103 +1,16 @@
----
-sidebar_position: 3
----
+# 示例
 
-# TIDAS Link Examples
+所有数值仅用于说明结构，不代表真实产品或核验结论。
 
-This page provides the first v0.1 example payloads. The values are illustrative and are not product claims.
-
-## Published Files
-
-| Artifact | Path |
+| 文件 | 内容 |
 | --- | --- |
-| PCF schema | [`schemas/tidas_link_pcf_v0_1.json`](../schemas/tidas_link_pcf_v0_1.json) |
-| LCIA extension schema | [`schemas/tidas_link_lcia_extension_v0_1.json`](../schemas/tidas_link_lcia_extension_v0_1.json) |
-| Battery cell PCF example | [`examples/battery-cell-pcf-v0-1.json`](../examples/battery-cell-pcf-v0-1.json) |
-| Battery cell LCIA extension example | [`examples/battery-cell-lcia-extension-v0-1.json`](../examples/battery-cell-lcia-extension-v0-1.json) |
+| [`battery-cell-lci.json`](../examples/battery-cell-lci.json) | 电池单体生产的 LCI 输入和输出 |
+| [`battery-cell-lcia.json`](../examples/battery-cell-lcia.json) | 气候变化、酸化和水资源使用结果 |
+| [`battery-cell-pcf.json`](../examples/battery-cell-pcf.json) | 电池单体产品碳足迹（LCIA 下的 PCF Profile） |
+| [`battery-pack-pcf.json`](../examples/battery-pack-pcf.json) | 包含供应商结果和背景数据输入的电池包 PCF Profile |
 
-## Example Shape
+电池包示例中的 `calculationInputs` 展示：
 
-The PCF example uses this high-level shape:
-
-```json
-{
-  "schemaVersion": "TIDAS-Link-PCF-0.1",
-  "specVersion": "3.0.3",
-  "companyName": "Example Battery Cell Supplier Ltd.",
-  "productNameCompany": "Example NMC Battery Cell",
-  "pcf": {
-    "declaredUnitOfMeasurement": "piece",
-    "pcfExcludingBiogenicUptake": "74.20",
-    "ipccCharacterizationFactors": ["AR6"],
-    "crossSectoralStandards": ["GHGP-Product", "ISO14067", "PACT-3.0"],
-    "primaryDataShare": "68.5"
-  },
-  "tidas": {
-    "profile": "TIDAS Link",
-    "profileVersion": "0.1",
-    "pactCompatibility": {
-      "version": "3.0.3",
-      "mode": "native-with-extensions"
-    }
-  },
-  "evidenceRefs": [],
-  "extensions": []
-}
-```
-
-The LCIA example is carried in a PACT-compatible `extensions[]` object and can also be validated independently:
-
-```json
-{
-  "schemaVersion": "TIDAS-Link-LCIA-0.1",
-  "impactResults": [
-    {
-      "impactCategory": "climate change",
-      "indicator": "GWP total",
-      "method": "IPCC",
-      "methodVersion": "AR6",
-      "value": "74.20",
-      "unit": "kg CO2e"
-    }
-  ]
-}
-```
-
-## Validation
-
-At minimum, validation should check:
-
-1. The JSON files parse.
-2. The PCF example satisfies `tidas_link_pcf_v0_1.json`.
-3. The LCIA example satisfies `tidas_link_lcia_extension_v0_1.json`.
-4. A strict PACT export can remove TIDAS-only root fields while preserving `ProductFootprint`, `CarbonFootprint`, and `DataModelExtension` content.
-
-The project validation scripts parse the JSON files and validate the example payloads against the schemas.
-
-## Strict PACT Export Notes
-
-For strict PACT export, remove:
-
-- `schemaVersion`
-- `tidas`
-- `evidenceRefs`
-- `traceabilityRefs`
-- `credentialRefs`
-- `controlledTransfer`
-
-Keep:
-
-- `id`
-- `specVersion`
-- `created`
-- `status`
-- `companyName`
-- `companyIds`
-- `productDescription`
-- `productIds`
-- `productNameCompany`
-- `productClassifications`
-- `pcf`
-- `extensions`
-
-The LCIA extension remains available as a PACT `DataModelExtension`, but a PACT-only receiver is only expected to store or forward it unless it explicitly implements the TIDAS Link LCIA schema.
+1. 采用供应商提供的电池单体 PCF Profile；
+2. 采用 TIDAS 背景电力过程；
+3. 分别记录实际数量、换算说明和计算位置。

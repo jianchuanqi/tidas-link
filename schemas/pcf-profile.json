@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tidas.tiangong.earth/schemas/pcf-profile.json",
+  "title": "TIDAS Link Product Carbon Footprint Profile",
+  "description": "Product carbon footprint profile of an LCIA result exchanged through TIDAS Link.",
+  "allOf": [
+    {
+      "$ref": "https://tidas.tiangong.earth/schemas/lcia-result.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "resultType": {
+          "const": "lcia"
+        },
+        "profile": {
+          "const": "pcf"
+        },
+        "impactResults": {
+          "type": "array",
+          "contains": {
+            "type": "object",
+            "required": [
+              "impactCategory",
+              "indicator"
+            ],
+            "properties": {
+              "impactCategory": {
+                "const": "climate change"
+              },
+              "indicator": {
+                "const": "GWP excluding biogenic uptake"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "resultType",
+        "profile",
+        "impactResults"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "resultType": "lcia",
+  "profile": "pcf",
+  "resultId": "urn:uuid:8bb861d0-a970-42ea-bbd3-d5a4f8e9a001",
+  "resultVersion": "1.0.0",
+  "resultStatus": "active",
+  "dataOwner": {
+    "ids": [
+      "urn:lei:529900TIDASLINKPACK1"
+    ],
+    "name": "Example Battery Pack Manufacturer Ltd."
+  },
+  "subject": {
+    "type": "product",
+    "ids": [
+      "urn:manufacturer-part-id:example:battery-pack-001"
+    ],
+    "name": "Example traction battery pack",
+    "description": "Illustrative battery pack containing 1,000 battery cells.",
+    "granularity": "product-variant"
+  },
+  "referenceQuantity": {
+    "basis": "declared-unit",
+    "amount": "1",
+    "unit": "piece",
+    "massKg": "480"
+  },
+  "systemBoundary": {
+    "type": "cradle-to-gate",
+    "description": "Upstream materials and components, battery-pack assembly, packaging, and outbound logistics to the customer gate."
+  },
+  "referencePeriod": {
+    "start": "2025-01-01T00:00:00Z",
+    "end": "2025-12-31T00:00:00Z"
+  },
+  "geography": {
+    "country": "CN"
+  },
+  "modeling": {
+    "standards": [
+      "GHGP-Product",
+      "ISO 14067"
+    ],
+    "allocationRulesDescription": "No co-product allocation is used in pack assembly.",
+    "excludedSharePercent": "0"
+  },
+  "impactResults": [
+    {
+      "resultItemId": "gwp-excluding-biogenic-uptake",
+      "impactCategory": "climate change",
+      "indicator": "GWP excluding biogenic uptake",
+      "value": "78250",
+      "unit": "kg CO2e",
+      "method": {
+        "name": "IPCC",
+        "version": "AR6"
+      }
+    },
+    {
+      "resultItemId": "gwp-including-biogenic-uptake",
+      "impactCategory": "climate change",
+      "indicator": "GWP including biogenic uptake",
+      "value": "78250",
+      "unit": "kg CO2e",
+      "method": {
+        "name": "IPCC",
+        "version": "AR6"
+      }
+    }
+  ],
+  "calculationInputs": [
+    {
+      "inputId": "battery-cell-input",
+      "sourceType": "supplier-specific",
+      "sourceResult": {
+        "resultId": "urn:uuid:4f6569e0-79b1-4e21-9b60-15d6e6d41101",
+        "resultVersion": "1.0.0",
+        "resultItemIds": [
+          "gwp-excluding-biogenic-uptake"
+        ]
+      },
+      "usedQuantity": {
+        "amount": "1000",
+        "unit": "piece"
+      },
+      "conversionDescription": "One supplier result reference unit per battery cell input.",
+      "calculationPosition": "Battery-cell input in the battery-pack LCA model"
+    },
+    {
+      "inputId": "assembly-electricity",
+      "sourceType": "background",
+      "sourceDataset": {
+        "objectType": "process",
+        "id": "urn:uuid:45c91c37-5f74-4b90-946a-60e657559201",
+        "version": "01.00.000"
+      },
+      "usedQuantity": {
+        "amount": "250",
+        "unit": "kWh"
+      },
+      "calculationPosition": "Electricity input for battery-pack assembly"
+    }
+  ],
+  "limitations": "Illustrative result and calculation inputs for schema validation only."
+}
