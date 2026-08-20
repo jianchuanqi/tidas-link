@@ -8,9 +8,8 @@ const { execFileSync } = require("child_process");
 const projectRoot = path.resolve(__dirname, "..");
 const baselinePath = path.join(projectRoot, "docs", "compatibility-baseline.json");
 const baseline = JSON.parse(fs.readFileSync(baselinePath, "utf8"));
-const tidasRoot = process.env.TIDAS_ROOT || "/Users/jianchuan/Dev/tidas";
-const pactRoot =
-  process.env.PACT_ROOT || "/Users/jianchuan/Dev/data-exchange-protocol";
+const tidasRoot = process.env.TIDAS_ROOT;
+const pactRoot = process.env.PACT_ROOT;
 const failures = [];
 
 function git(root, args) {
@@ -49,7 +48,11 @@ function schemaManifest(root, relativeRoot) {
   };
 }
 
-if (!fs.existsSync(tidasRoot)) {
+if (!tidasRoot) {
+  failures.push(
+    "TIDAS_ROOT is required and must point to the pinned TIDAS checkout",
+  );
+} else if (!fs.existsSync(tidasRoot)) {
   failures.push(`TIDAS_ROOT does not exist: ${tidasRoot}`);
 } else {
   checkEqual(
@@ -84,7 +87,11 @@ if (!fs.existsSync(tidasRoot)) {
   }
 }
 
-if (!fs.existsSync(pactRoot)) {
+if (!pactRoot) {
+  failures.push(
+    "PACT_ROOT is required and must point to the pinned PACT checkout",
+  );
+} else if (!fs.existsSync(pactRoot)) {
   failures.push(`PACT_ROOT does not exist: ${pactRoot}`);
 } else {
   checkEqual(

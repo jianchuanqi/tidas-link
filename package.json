@@ -6,8 +6,9 @@
     "node": ">=20"
   },
   "scripts": {
+    "assess:tidas": "node scripts/assess-tidas-upstream.js",
     "validate:examples": "node scripts/validate-examples.js",
-    "validate:compatibility": "node scripts/check-compatibility-baseline.js",
+    "validate:compatibility": "node scripts/check-compatibility-baseline.js && node scripts/assess-tidas-upstream.js --verify-baseline docs/compatibility-baseline.json",
     "validate": "npm run validate:examples && npm test && npm run validate:compatibility",
     "test": "node --test"
   },

@@ -20,7 +20,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: jianchuanqi/tidas
-          ref: e26953df2549a5eba4c823295d5631867427a465
+          ref: 073e18230c3f1c51440378fd5321e6ad0872e74d
+          fetch-depth: 0
           path: tidas
 
       - name: Check out pinned PACT

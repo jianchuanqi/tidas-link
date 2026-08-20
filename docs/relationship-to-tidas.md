@@ -13,10 +13,14 @@ TIDAS 管理。
 
 ## TIDAS 更新处理
 
-1. 记录新的 TIDAS 发布或提交；
-2. 比较 TIDAS Schema 基线；
-3. 检查 TIDAS-Link 公共结构和引用含义；
-4. 更新受影响的对应关系、示例和测试。
+1. 以完整 commit 固定候选和既有基线；
+2. 比较全部发布 Schema、文件清单和 manifest 摘要；
+3. 分类破坏性、增量兼容、兼容放宽、仅文档和需要人工判断的差异；
+4. 分别检查 TIDAS-Link Schema、Binding、示例和校验器；
+5. 评估 Contracts、Connector Plugin、平台和 Managed Profile 的 SSCM 影响；
+6. 提交评估记录并通过固定上游验证后，才更新兼容基线。
 
 当前核对基线记录在
 [`compatibility-baseline.json`](compatibility-baseline.json)。
+完整流程和失败关闭规则见
+[`upstream-compatibility.md`](upstream-compatibility.md)。
