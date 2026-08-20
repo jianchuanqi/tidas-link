@@ -1,0 +1,190 @@
+{
+  "assessmentVersion": 1,
+  "assessmentId": "tidas-e26953d-to-073e182",
+  "recordedAt": "2026-08-20",
+  "architectureBaseline": {
+    "version": "architecture-v0.1.1",
+    "entrypoint": "https://github.com/jianchuanqi/tiangong-sscm-engineering-os/blob/architecture-v0.1.1/docs/architecture-entrypoint.md",
+    "commit": "b666efce3e5753562d9e44de9adcd245f440cdbd"
+  },
+  "supplementalArchitectureReview": {
+    "version": "architecture-v0.1.2",
+    "commit": "a2d46a04a8e62fee98e8e8eb96aeecc983bcc0c8",
+    "conclusion": "TIDAS-Link ownership and Issue scope are unchanged; compatibility impact is distributed only to confirmed Contracts, Plugin, platform, and Profile consumers."
+  },
+  "source": {
+    "repository": "https://github.com/jianchuanqi/tidas",
+    "upstreamRepository": "https://github.com/tiangong-lca/tidas",
+    "role": "read-only-upstream",
+    "previousCommit": "e26953df2549a5eba4c823295d5631867427a465",
+    "candidateCommit": "073e18230c3f1c51440378fd5321e6ad0872e74d"
+  },
+  "provenance": {
+    "license": "MIT",
+    "use": "read-only commit metadata, public Schema hashes, and structural differences",
+    "copiedFiles": [],
+    "dataClassification": "public upstream schemas; no enterprise or restricted examples"
+  },
+  "detection": {
+    "fromCommit": "e26953df2549a5eba4c823295d5631867427a465",
+    "toCommit": "073e18230c3f1c51440378fd5321e6ad0872e74d",
+    "ancestry": "fast-forward",
+    "commitCount": 3,
+    "commits": [
+      "9004873b0abdc0f9288b63a0668c1ebf64823e78",
+      "1c8f7fa4f6005282ed270f11b647d899aadd7575",
+      "073e18230c3f1c51440378fd5321e6ad0872e74d"
+    ],
+    "changedFiles": [
+      {
+        "path": ".docpact/config.yaml",
+        "status": "M",
+        "category": "governance"
+      },
+      {
+        "path": ".github/workflows/ai-doc-lint.yml",
+        "status": "M",
+        "category": "ci"
+      },
+      {
+        "path": ".github/workflows/build.yml",
+        "status": "M",
+        "category": "ci"
+      },
+      {
+        "path": "AGENTS.md",
+        "status": "M",
+        "category": "governance"
+      },
+      {
+        "path": "_docs/agents/repo-architecture.md",
+        "status": "M",
+        "category": "governance"
+      },
+      {
+        "path": "_docs/agents/repo-validation.md",
+        "status": "M",
+        "category": "governance"
+      },
+      {
+        "path": "static/schemas/tidas_sources.json",
+        "status": "M",
+        "category": "schema"
+      }
+    ],
+    "schemaChanges": [
+      {
+        "path": "static/schemas/tidas_sources.json",
+        "status": "M",
+        "classification": "compatible-relaxation",
+        "beforeSha256": "97b5eb51165640d85eb1cb5a499823754eabbd9facddba93de59543ea8dcf307",
+        "afterSha256": "2f37df9004a05ed83f8c708b7edc5f482ec1f848c050fd9f54e1aad49687dd5d",
+        "differences": [
+          {
+            "instancePath": "/properties/sourceDataSet/properties/sourceInformation/properties/dataSetInformation/properties/referenceToDigitalFile/anyOf/0/properties/@uri/format",
+            "change": "removed",
+            "classification": "compatible-relaxation",
+            "before": "uri"
+          },
+          {
+            "instancePath": "/properties/sourceDataSet/properties/sourceInformation/properties/dataSetInformation/properties/referenceToDigitalFile/anyOf/1/items/properties/@uri/format",
+            "change": "removed",
+            "classification": "compatible-relaxation",
+            "before": "uri"
+          }
+        ]
+      }
+    ],
+    "schemaCompatibility": "compatible-relaxation",
+    "schemaSnapshots": {
+      "from": {
+        "fileCount": 19,
+        "manifestSha256": "2b80cbdde064e45fb35149d66b65c0822ccf0b6c5bcd38e17b11ae58aae6626f"
+      },
+      "to": {
+        "fileCount": 19,
+        "manifestSha256": "c47f8781b58fbc274a4163130d5d374337c969f3682791905016d32af1e0392c"
+      }
+    }
+  },
+  "decision": {
+    "status": "synchronized",
+    "compatibility": "compatible-relaxation",
+    "deprecationRequired": false,
+    "reason": "TIDAS now accepts opaque digital-file locators where the previous Schema required URI syntax. Every document accepted by the previous pin remains accepted, and TIDAS-Link does not embed or validate this Source field."
+  },
+  "tidasLinkImpact": [
+    {
+      "surface": "schemas",
+      "status": "unaffected",
+      "evidence": "TIDAS-Link carries only objectType, id, and optional version for a TIDAS source reference."
+    },
+    {
+      "surface": "bindings",
+      "status": "unaffected",
+      "evidence": "PACT v3.0.3 mappings do not read TIDAS Source digital-file locators."
+    },
+    {
+      "surface": "examples",
+      "status": "unaffected",
+      "evidence": "All examples are synthetic and contain no Source digital-file locator."
+    },
+    {
+      "surface": "validators",
+      "status": "verification-only",
+      "evidence": "The pinned commit, manifest digest, and tidas_sources.json digest are updated and replayed in compatibility validation."
+    }
+  ],
+  "sscmImpactMatrix": [
+    {
+      "scope": "contracts",
+      "repository": "jianchuanqi/tiangong-sscm-contracts",
+      "status": "unaffected",
+      "followUpIssueRequired": false,
+      "boundary": "No shared platform interface changes; TIDAS-Link remains outside Contracts."
+    },
+    {
+      "scope": "connector-plugin",
+      "repository": "jianchuanqi/tiangong-sscm-connector-plugins",
+      "status": "unaffected",
+      "followUpIssueRequired": false,
+      "boundary": "No selected Plugin mapping or failure path consumes the relaxed Source locator."
+    },
+    {
+      "scope": "exchange-platform",
+      "repository": "jianchuanqi/tiangong-sscm-exchange",
+      "status": "unaffected",
+      "followUpIssueRequired": false,
+      "boundary": "No platform API, storage interpretation, transport, identity, authorization, or workflow changes."
+    },
+    {
+      "scope": "edl-platform",
+      "repository": "jianchuanqi/eco-design-label-platform",
+      "status": "unaffected",
+      "followUpIssueRequired": false,
+      "boundary": "No EDL API or explicitly selected TIDAS-Link version behavior changes."
+    },
+    {
+      "scope": "managed-profile",
+      "repository": "jianchuanqi/tiangong-sscm-connector",
+      "status": "unaffected",
+      "followUpIssueRequired": false,
+      "boundary": "TIDAS-Link has no fixed Managed Profile, and no Bundle or Contract lock changes."
+    }
+  ],
+  "failureHandlingEvidence": [
+    {
+      "condition": "candidate commit unavailable or not a descendant of the previous pin",
+      "expectedResult": "detector exits non-zero and the existing pin remains unchanged"
+    },
+    {
+      "condition": "schema difference is breaking or requires manual review",
+      "expectedResult": "synchronization is blocked pending migration and explicit impact evidence"
+    },
+    {
+      "condition": "recorded detection, HEAD, manifest, file digest, examples, Binding, or tests disagree",
+      "expectedResult": "compatibility validation exits non-zero"
+    }
+  ],
+  "evidenceClass": "public-upstream-and-synthetic-tests"
+}

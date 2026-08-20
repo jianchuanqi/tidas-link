@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-07-30",
+  "recordedAt": "2026-08-20",
   "tidasLink": {
     "repository": "git@github.com:jianchuanqi/tidas-link.git",
     "repositoryBaselineCommit": "1e4b80f6b03a884322ccb000d1bebd39c0082130",
@@ -16,12 +16,14 @@
   "tidas": {
     "repository": "git@github.com:jianchuanqi/tidas.git",
     "role": "read-only-upstream",
-    "commit": "e26953df2549a5eba4c823295d5631867427a465",
-    "commitDate": "2026-07-27T18:47:33+08:00",
-    "integrationStatus": "read-only-schema-baseline-reviewed",
+    "commit": "073e18230c3f1c51440378fd5321e6ad0872e74d",
+    "commitDate": "2026-08-17T14:13:44+08:00",
+    "integrationStatus": "compatible-relaxation-reviewed-and-synchronized",
+    "previousCommit": "e26953df2549a5eba4c823295d5631867427a465",
+    "assessment": "docs/compatibility-assessments/tidas-e26953d-to-073e182.json",
     "schemaSnapshotRoot": "static/schemas",
     "schemaFileCount": 19,
-    "schemaManifestSha256": "2b80cbdde064e45fb35149d66b65c0822ccf0b6c5bcd38e17b11ae58aae6626f",
+    "schemaManifestSha256": "c47f8781b58fbc274a4163130d5d374337c969f3682791905016d32af1e0392c",
     "validationTool": {
       "project": "tidas-tools",
       "release": "v0.1.1",
@@ -42,7 +44,7 @@
       },
       {
         "path": "static/schemas/tidas_sources.json",
-        "sha256": "97b5eb51165640d85eb1cb5a499823754eabbd9facddba93de59543ea8dcf307"
+        "sha256": "2f37df9004a05ed83f8c708b7edc5f482ec1f848c050fd9f54e1aad49687dd5d"
       },
       {
         "path": "static/schemas/tidas_unitgroups.json",

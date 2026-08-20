@@ -119,3 +119,10 @@ npm run validate
 
 校验覆盖 Schema、示例、计算输入、PACT 官方样例双向转换，以及 TIDAS 和
 PACT 外部基线。
+
+## 上游兼容
+
+[`docs/upstream-compatibility.md`](docs/upstream-compatibility.md) 说明 TIDAS
+commit 固定、差异分类、TIDAS-Link 与 SSCM 影响评估、弃用和失败关闭规则。
+每次接受新的 TIDAS 基线都必须同时提交机器可复核的评估记录；当前记录见
+[`tidas-e26953d-to-073e182.json`](docs/compatibility-assessments/tidas-e26953d-to-073e182.json)。
