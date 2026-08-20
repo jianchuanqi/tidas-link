@@ -1,15 +1,17 @@
 # AGENTS.md — TIDAS Link
 
-## Engineering OS authority
+## Engineering OS authority and repository context provenance
 
 - Authority repository: [jianchuanqi/tiangong-sscm-engineering-os](https://github.com/jianchuanqi/tiangong-sscm-engineering-os)
-- Architecture baseline: `architecture-v0.1.1`
-- Architecture entrypoint: [architecture-v0.1.1/docs/architecture-entrypoint.md](https://github.com/jianchuanqi/tiangong-sscm-engineering-os/blob/architecture-v0.1.1/docs/architecture-entrypoint.md)
-- Baseline commit: `b666efce3e5753562d9e44de9adcd245f440cdbd`
+- Repository context version: `architecture-v0.1.1`
+- Context entrypoint: [architecture-v0.1.1/docs/architecture-entrypoint.md](https://github.com/jianchuanqi/tiangong-sscm-engineering-os/blob/architecture-v0.1.1/docs/architecture-entrypoint.md)
+- Context commit: `b666efce3e5753562d9e44de9adcd245f440cdbd`
 
-以上标签、入口和完整 commit 是同一份不可移动的历史基线。不得用
-`main`、`latest` 或 `architecture-v0.1.2` 替换。本文件只声明本仓库规则，
-不复制 Engineering OS 全文。
+以上三项只记录本文件建立仓库角色和本地规则时采用的历史来源，不是所有未来任务的执行基线或架构版本上限。本文件只声明本仓库规则，不复制 Engineering OS 全文；不得静默改写这组来源记录。
+
+## Task architecture baseline
+
+每个 SSCM Issue 必须在正文中同时固定不可移动的架构 tag、该 tag 下的入口链接和解引用后的完整 commit。执行和复核以当前 Issue 的这组 Task architecture baseline 为准；经 Issue 明确批准、三项一致且未被弃用的其他版本（包括 `architecture-v0.1.2`）可以使用。不得用 `main`、`latest`、`current version` 或其他可移动引用代替；任务基线缺失、三项不一致、未经记录升级，或与仓库边界冲突时必须停止并请求裁决。
 
 ## Project Identity
 
@@ -106,7 +108,7 @@ Before any task, read:
    tests.
 
 Before any cross-repository Issue, also read these documents in order from the
-fixed Architecture baseline above:
+Task architecture baseline fixed by the current Issue:
 
 1. `docs/architecture-entrypoint.md`
 2. `docs/system-context.md`
@@ -125,9 +127,9 @@ Stop the affected work, record the facts, and request a decision from the
 appropriate repository owner or Engineering OS maintainer if any of the
 following applies:
 
-- The fixed architecture tag, entrypoint, or commit is inaccessible, the three
-  do not agree, or local facts conflict with the fixed baseline. Do not guess
-  or substitute a movable branch or newer architecture version.
+- The architecture tag, entrypoint, or commit fixed by the current Issue is
+  inaccessible, the three do not agree, or local facts conflict with its Task
+  architecture baseline. Do not guess or substitute a movable reference.
 - The task would change this repository's Compatibility Layer role, merge it
   into Contracts, make it a fixed DSH Plugin, or blur Runtime, Plugin,
   independent-platform, Contract, or TIDAS ownership boundaries.
