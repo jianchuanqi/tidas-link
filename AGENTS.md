@@ -1,17 +1,16 @@
 # AGENTS.md — TIDAS Link
 
-## Engineering OS authority and architecture baseline
+## Engineering OS authority and architecture version selection
 
 - Authority repository: [jianchuanqi/tiangong-sscm-engineering-os](https://github.com/jianchuanqi/tiangong-sscm-engineering-os)
-- Architecture baseline: `architecture-v1.0.0`
-- Architecture entrypoint: [architecture-v1.0.0/docs/architecture-entrypoint.md](https://github.com/jianchuanqi/tiangong-sscm-engineering-os/blob/architecture-v1.0.0/docs/architecture-entrypoint.md)
-- Baseline commit: `52ed316ade870ea88878ee3128ac45dae564f86b`
+- Selection rule: at the start of every task, when resuming an open task, and whenever the baseline is checked, re-read the authority repository's published immutable tags matching `architecture-v<MAJOR>.<MINOR>.<PATCH>`; compare MAJOR, MINOR, and PATCH numerically and select the highest version. This file must not hard-code a current version, entrypoint, or commit.
+- Resolved task baseline: after selecting the highest tag, the current Issue must pin that concrete tag, the `docs/architecture-entrypoint.md` permalink under the same tag, and the full Engineering OS commit obtained by dereferencing the tag.
 
-以上 tag、入口和完整 commit 是当前最高已发布的不可移动架构基线。新任务和全部开放任务必须与它同步；发布更高版本后继续同步，已完成任务保留原基线用于历史审计。不得用 `main`、`latest`、`current version` 或更低版本代替。本文件只声明本仓库规则，不复制 Engineering OS 全文。
+Do not substitute `main`, `latest`, “current version,” tag publication date, lexical sorting, a lower version, or any other movable reference for this resolution. When a higher version is published, every open task must re-resolve and upgrade before work resumes; completed tasks retain their original baseline for historical audit. This file states only local repository rules and does not copy the full Engineering OS.
 
 ## Task architecture baseline
 
-每个 SSCM Issue 必须在正文中同时固定版本号最高的已发布不可移动架构 tag、该 tag 下的入口链接和解引用后的完整 commit。新版本发布后，所有开放任务必须同步升级并重新核对；已完成任务保留原始基线用于历史审计。任务基线缺失、不是最高已发布版本、三项不一致，或与仓库边界冲突时必须停止并请求裁决。
+Every SSCM Issue must apply the rule above and pin the then-highest published immutable architecture tag, entrypoint under the same tag, and dereferenced full commit. Revalidate at task start and whenever an open task resumes; if a higher version has been published, upgrade the baseline and recheck the task before continuing. Completed tasks retain their original baseline for historical audit. Stop and request a decision if the highest version cannot be determined, the task baseline is missing or not highest, the three values disagree, or the baseline conflicts with repository boundaries.
 
 ## Project Identity
 
