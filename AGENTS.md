@@ -1,17 +1,17 @@
 # AGENTS.md — TIDAS Link
 
-## Engineering OS authority and repository context provenance
+## Engineering OS authority and architecture baseline
 
 - Authority repository: [jianchuanqi/tiangong-sscm-engineering-os](https://github.com/jianchuanqi/tiangong-sscm-engineering-os)
-- Repository context version: `architecture-v0.1.1`
-- Context entrypoint: [architecture-v0.1.1/docs/architecture-entrypoint.md](https://github.com/jianchuanqi/tiangong-sscm-engineering-os/blob/architecture-v0.1.1/docs/architecture-entrypoint.md)
-- Context commit: `b666efce3e5753562d9e44de9adcd245f440cdbd`
+- Architecture baseline: `architecture-v1.0.0`
+- Architecture entrypoint: [architecture-v1.0.0/docs/architecture-entrypoint.md](https://github.com/jianchuanqi/tiangong-sscm-engineering-os/blob/architecture-v1.0.0/docs/architecture-entrypoint.md)
+- Baseline commit: `52ed316ade870ea88878ee3128ac45dae564f86b`
 
-以上三项只记录本文件建立仓库角色和本地规则时采用的历史来源，不是所有未来任务的执行基线或架构版本上限。本文件只声明本仓库规则，不复制 Engineering OS 全文；不得静默改写这组来源记录。
+以上 tag、入口和完整 commit 是当前最高已发布的不可移动架构基线。新任务和全部开放任务必须与它同步；发布更高版本后继续同步，已完成任务保留原基线用于历史审计。不得用 `main`、`latest`、`current version` 或更低版本代替。本文件只声明本仓库规则，不复制 Engineering OS 全文。
 
 ## Task architecture baseline
 
-每个 SSCM Issue 必须在正文中同时固定不可移动的架构 tag、该 tag 下的入口链接和解引用后的完整 commit。执行和复核以当前 Issue 的这组 Task architecture baseline 为准；经 Issue 明确批准、三项一致且未被弃用的其他版本（包括 `architecture-v0.1.2`）可以使用。不得用 `main`、`latest`、`current version` 或其他可移动引用代替；任务基线缺失、三项不一致、未经记录升级，或与仓库边界冲突时必须停止并请求裁决。
+每个 SSCM Issue 必须在正文中同时固定版本号最高的已发布不可移动架构 tag、该 tag 下的入口链接和解引用后的完整 commit。新版本发布后，所有开放任务必须同步升级并重新核对；已完成任务保留原始基线用于历史审计。任务基线缺失、不是最高已发布版本、三项不一致，或与仓库边界冲突时必须停止并请求裁决。
 
 ## Project Identity
 
