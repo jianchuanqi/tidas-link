@@ -3,7 +3,7 @@
   "private": true,
   "description": "Schema set for LCI and LCIA results, the PCF profile, and their calculation inputs, with protocol bindings.",
   "engines": {
-    "node": ">=20"
+    "node": "^24.20.0"
   },
   "scripts": {
     "assess:tidas": "node scripts/assess-tidas-upstream.js",
